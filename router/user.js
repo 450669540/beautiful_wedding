@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-24 22:03:20
+ * @LastEditTime: 2024-03-24 22:05:50
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,8 +44,8 @@ router.post('/login', async (req, res) => {
         openid = response.data.openid;
       });
     let userinfo = await searchUserOpenId(openid);
-    console.log('用户信息', userinfo, userinfo?.length);
-    if (userinfo?.length > 0) {
+    console.log('用户信息', userinfo);
+    if (userinfo) {
       req.session.user = userinfo; // 将用户信息存储到session中
       req.session.islogin = true; // 将用户的登录状态存储到session中
       res.send({
