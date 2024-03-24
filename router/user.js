@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-24 22:15:46
+ * @LastEditTime: 2024-03-24 22:17:11
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -127,7 +127,9 @@ router.post('/updateUserInfo', async (req, res) => {
 
 router.get('/deleteUserInfo', async (req, res) => {
   const query = req.query;
-  const data = await userOperate.deleteData({ open_id: query.open_id });
+  const data = await userOperate.deleteData('deleteOne', {
+    open_id: query.open_id,
+  });
   res.send({
     msg: 'get请求成功',
     code: 1,
