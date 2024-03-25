@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-18 14:00:35
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-24 21:43:03
+ * @LastEditTime: 2024-03-25 15:01:04
  * @FilePath: /beautifu-wedding/router/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,11 +28,12 @@ router.get('/getAdvertisements', async (req, res) => {
 /** 新增广告图 */
 router.get('/addAdvertisements', async (req, res) => {
   try {
+    const query = req.query;
     const data = await advertisementOperate.create({
-      _id: '57657', // 手动指定_id值
-      code: 'MY_BANNER',
-      url: 'http://101.37.68.92:5010/p2.png',
-      order: 1,
+      _id: uuid.v4(), // 手动指定_id值
+      code: query.code,
+      url: query.url,
+      order: query.order,
     });
 
     res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
