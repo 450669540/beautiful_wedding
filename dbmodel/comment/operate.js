@@ -2,17 +2,18 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 11:09:59
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-26 11:35:19
+ * @LastEditTime: 2024-03-26 17:24:08
  * @FilePath: /beautiful-wedding/dbmodel/advertisement/operate.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-const userModel = require('./UserModel');
+const commentModel = require('./CommentModel');
 
 //查询全部
-const find = () => {
+const find = (query) => {
   return new Promise((resolve, reject) => {
     try {
-      userModel.find().then((doc) => {
+      commentModel.find(query).then((doc) => {
+        console.log(doc);
         resolve(doc);
       });
     } catch (err) {
@@ -24,7 +25,8 @@ const find = () => {
 // 富查询条件，对象格式，键值对
 const findOne = (query) => {
   return new Promise((resolve, reject) => {
-    userModel.findOne(query).then((doc) => {
+    commentModel.find(query).then((doc) => {
+      console.log(doc);
       resolve(doc);
     });
   });
@@ -33,7 +35,8 @@ const findOne = (query) => {
 // 新增操作(save | create 方法)
 const create = (value) => {
   return new Promise((resolve, reject) => {
-    userModel.create(value).then((doc) => {
+    commentModel.create(value).then((doc) => {
+      console.log(doc);
       resolve(doc);
     });
   });
@@ -42,7 +45,8 @@ const create = (value) => {
 // 更新操作(update | updateOne | updateMany 方法)
 const update = (query, value) => {
   return new Promise((resolve, reject) => {
-    userModel.updateOne(query, value).then((doc) => {
+    commentModel.update(query, value).then((doc) => {
+      console.log(doc);
       resolve(doc);
     });
   });
@@ -52,7 +56,8 @@ const update = (query, value) => {
 const deleteData = (deleteType, query) => {
   return new Promise((resolve, reject) => {
     deleteType = deleteType || 'deleteOne';
-    userModel.deleteOne(query).then((doc) => {
+    commentModel[deleteType](query).then((doc) => {
+      console.log(doc);
       resolve(doc);
     });
   });
