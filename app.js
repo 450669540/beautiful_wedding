@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-18 13:54:15
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-29 13:40:26
+ * @LastEditTime: 2024-03-29 22:24:04
  * @FilePath: /beautifu-wedding/app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,7 +22,7 @@ require('./dbmodel/advertisement/AdvertisementSchema.js');
 require('./dbmodel/advertisement/AdvertisementModel.js');
 
 const app = express();
-const port = 8080;
+const port = 443;
 app.use(
   session({
     secret: 'beautifulWedding', // secret  属性的值可以为任意字符串
@@ -43,7 +43,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'data')));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'upload')));
-
 // 解决跨域
 
 app.all('*', function (req, res, next) {
