@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:28:01
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-26 17:58:30
+ * @LastEditTime: 2024-04-02 15:09:38
  * @FilePath: /beautiful-wedding/router/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -52,6 +52,35 @@ router.get('/getElectronicInvitationById', async (req, res) => {
   } catch (err) {
     console.log(err);
     res.send({ msg: 'get请求失败', success: false });
+  }
+});
+
+/** 删除指定请柬 */
+router.get('/deleteElectronicInvitationById', async (req, res) => {
+  const query = req.query;
+  let data = await electronTemplateOperate.findOne({ _id: query?.id });
+  if (data) {
+    const data1 = await electronicInvitationComponentOperate.deleteData(
+      'deleteOne',
+      {
+        _id: data?.component_id,
+      }
+    );
+    const data2 = await electronicInvitationPageOperate.deleteData(
+      'deleteOne',
+      {
+        _id: data?.page_id,
+      }
+    );
+    const data = await electronTemplateOperate.deleteData('deleteOne', {
+      _id: query.id,
+    });
+    res.send({
+      msg: 'get请求成功',
+      code: 1,
+      success: true,
+      data,
+    });
   }
 });
 
