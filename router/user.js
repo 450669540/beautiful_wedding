@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-26 11:25:30
+ * @LastEditTime: 2024-04-02 14:17:09
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,6 +15,7 @@ const axios = require('axios');
 const uuid = require('uuid');
 const wxKey = require('./../config/info');
 const userOperate = require('../dbmodel/user/operate');
+const info = require('./../config/info');
 
 const router = express.Router();
 
@@ -147,8 +148,7 @@ router.post('/uploadAvatar', async (req, res) => {
       files?.fileData?.[0]?.newFilename
     );
     //这里我传回一个下载此图片的Url
-    var downUrl =
-      'http://101.37.68.92:5010/' + files?.fileData?.[0]?.newFilename; //这里是想传回图片的链接
+    var downUrl = info.baseUrl + files?.fileData?.[0]?.newFilename; //这里是想传回图片的链接
     fs.rename(oldPath, newPath, () => {
       //fs.rename重命名图片名称
       res.send({

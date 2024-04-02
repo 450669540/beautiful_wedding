@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-27 11:45:12
+ * @LastEditTime: 2024-04-02 14:19:59
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,7 +22,7 @@ const create = async () => {
         list: [
           {
             type: 'calendar',
-            url: `http://101.37.68.92:5010/example1_1.jpg`,
+            url: `https://www.beautifulwedding.cn/example1_1.jpg`,
             styles: {
               position: 'absolute',
               top: 0,
@@ -57,7 +57,7 @@ const create = async () => {
             height: '100vh',
             images: [
               {
-                url: 'http://101.37.68.92/example1_1.jpg',
+                url: 'https://www.beautifulwedding.cn/example1_1.jpg',
                 styles: {
                   width: '100vw',
                   height: '100vh',
@@ -167,7 +167,7 @@ const create = async () => {
             height: '50vh',
             images: [
               {
-                url: 'http://101.37.68.92/example1_2.jpg',
+                url: 'https://www.beautifulwedding.cn/example1_2.jpg',
                 styles: {
                   width: '100vw',
                   height: '100vw',
@@ -230,7 +230,7 @@ const create = async () => {
             height: '50vh',
             images: [
               {
-                url: 'http://101.37.68.92/example1_3.jpg',
+                url: 'https://www.beautifulwedding.cn/example1_3.jpg',
                 styles: {
                   width: '86vw',
                   margin: '0 7vw',
@@ -283,7 +283,7 @@ const create = async () => {
                 height: '50vh',
                 images: [
                   {
-                    url: 'http://101.37.68.92/example1_4.jpg',
+                    url: 'https://www.beautifulwedding.cn/example1_4.jpg',
                     styles: {
                       width: '90vw',
                       margin: '0 5%',
@@ -335,7 +335,7 @@ const create = async () => {
 
     name: '喜嫁风', //模版名称
 
-    cover: 'http://101.37.68.92:5010/example3_3.jpg', //封面
+    cover: 'https://www.beautifulwedding.cn/example3_3.jpg', //封面
 
     type: 'flip', //模版类型
 
