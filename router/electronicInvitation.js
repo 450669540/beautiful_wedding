@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:28:01
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-02 15:13:12
+ * @LastEditTime: 2024-04-02 15:15:23
  * @FilePath: /beautiful-wedding/router/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -63,13 +63,13 @@ router.get('/deleteElectronicInvitationById', async (req, res) => {
     const data1 = await electronicInvitationComponentOperate.deleteData(
       'deleteOne',
       {
-        _id: data?.component_id,
+        _id: result?.component_id,
       }
     );
     const data2 = await electronicInvitationPageOperate.deleteData(
       'deleteOne',
       {
-        _id: data?.page_id,
+        _id: result?.page_id,
       }
     );
     const data = await electronTemplateOperate.deleteData('deleteOne', {
