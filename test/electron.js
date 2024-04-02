@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-02 15:36:29
+ * @LastEditTime: 2024-04-02 15:39:47
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -358,7 +358,7 @@ const create = async () => {
 
     cover: 'https://www.beautifulwedding.cn/example1_1.jpg', //封面
 
-    type: 'flip', //模版类型
+    type: 'longImage', //模版类型
 
     component_id: res1?._id, //组件JSON_ID
 
@@ -762,7 +762,7 @@ const create2 = async () => {
 
     cover: 'https://www.beautifulwedding.cn/example7_4.jpg', //封面
 
-    type: 'longImage', //模版类型
+    type: 'flip', //模版类型
 
     component_id: res1?._id, //组件JSON_ID
 
