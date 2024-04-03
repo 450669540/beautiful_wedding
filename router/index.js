@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-18 14:00:35
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-03 17:50:34
+ * @LastEditTime: 2024-04-03 17:57:42
  * @FilePath: /beautifu-wedding/router/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -49,7 +49,7 @@ router.get('/addAdvertisements', async (req, res) => {
 router.get('/addSystemParams', async (req, res) => {
   try {
     const query = req.query;
-    const data = await advertisementOperate.create({
+    const data = await systemOperate.create({
       _id: uuid.v4(),
       comment_flag: query?.comment_flag,
     });
