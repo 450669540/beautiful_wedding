@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-18 14:00:35
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-03 17:57:42
+ * @LastEditTime: 2024-04-10 17:47:43
  * @FilePath: /beautifu-wedding/router/index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -66,7 +66,7 @@ router.get('/updateSystemParams', async (req, res) => {
   const query = req.query;
   console.log(query);
   try {
-    const data = await systemOperate.update({
+    const data = await systemOperate.updateOne({
       _id: query?.id,
       comment_flag: query?.comment_flag,
     });
