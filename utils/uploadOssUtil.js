@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-11 10:00:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-11 10:46:19
+ * @LastEditTime: 2024-04-11 11:11:39
  * @FilePath: /beautiful-wedding/utils/uploadOssUtil.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,8 +10,8 @@ const globalInfo = require('../config/info');
 const OSS = require('ali-oss');
 
 async function uploadFile(file) {
-  let oldPath = files?.fileData?.[0]?.filepath; //这里的路径是图片的本地路径
-  console.log(files?.fileData?.[0]?.newFilename); //图片传过来的名字
+  let oldPath = file?.filepath; //这里的路径是图片的本地路径
+  console.log(file?.newFilename); //图片传过来的名字
   // 配置你的OSS信息
   const client = new OSS({
     region: globalInfo?.ossRegion,
