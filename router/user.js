@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-11 10:45:31
+ * @LastEditTime: 2024-04-11 11:26:41
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -186,17 +186,16 @@ router.post('/uploadAvatar', async (req, res) => {
     uploadFile(files?.fileData?.[0])
       .then((data) => {
         console.log('File uploaded:', data);
+        res.send({
+          msg: 'get请求成功',
+          code: 1,
+          success: true,
+          data: downUrl,
+        });
       })
       .catch((error) => {
         console.error('Error uploading file:', error);
       });
-
-    // res.send({
-    //   msg: 'get请求成功',
-    //   code: 1,
-    //   success: true,
-    //   data: downUrl,
-    // });
   });
 });
 
