@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-02 14:54:31
+ * @LastEditTime: 2024-04-11 10:45:31
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,9 +13,9 @@ var fs = require('fs');
 
 const axios = require('axios');
 const uuid = require('uuid');
-const wxKey = require('./../config/info');
-const userOperate = require('../dbmodel/user/operate');
 const info = require('./../config/info');
+const userOperate = require('../dbmodel/user/operate');
+const { uploadFile } = require('../utils/uploadOssUtil');
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
   // 获取从客户端上传上来的key
   try {
     let { code } = req.body;
-    let { appId, secret } = wxKey;
+    let { appId, secret } = info;
     let openid;
     if (!code) {
       return Promise.reject('没有code参数');
@@ -135,29 +135,68 @@ router.get('/deleteUserInfo', async (req, res) => {
 
 /** 上传头像 */
 router.post('/uploadAvatar', async (req, res) => {
+  // var form = new formidable.IncomingForm();
+  // var uploadDir = path.join(__dirname, '../upload/');
+  // form.uploadDir = uploadDir; //本地文件夹目录路径
+
+  // form.parse(req, (err, fields, files) => {
+  //   console.log('文件', files?.fileData?.[0]?.filepath);
+  //   let oldPath = files?.fileData?.[0]?.filepath; //这里的路径是图片的本地路径
+  //   console.log(files?.fileData?.[0]?.newFilename); //图片传过来的名字
+  //   let newPath = path.join(
+  //     path.dirname(oldPath),
+  //     files?.fileData?.[0]?.newFilename
+  //   );
+  //   //这里我传回一个下载此图片的Url
+  //   var downUrl = info.baseUrl + '/' + files?.fileData?.[0]?.newFilename; //这里是想传回图片的链接
+  //   fs.rename(oldPath, newPath, () => {
+  //     //fs.rename重命名图片名称
+  //     res.send({
+  //       msg: 'get请求成功',
+  //       code: 1,
+  //       success: true,
+  //       data: downUrl,
+  //     });
+  //   });
+  // });
+
   var form = new formidable.IncomingForm();
   var uploadDir = path.join(__dirname, '../upload/');
   form.uploadDir = uploadDir; //本地文件夹目录路径
 
   form.parse(req, (err, fields, files) => {
     console.log('文件', files?.fileData?.[0]?.filepath);
-    let oldPath = files?.fileData?.[0]?.filepath; //这里的路径是图片的本地路径
-    console.log(files?.fileData?.[0]?.newFilename); //图片传过来的名字
-    let newPath = path.join(
-      path.dirname(oldPath),
-      files?.fileData?.[0]?.newFilename
-    );
-    //这里我传回一个下载此图片的Url
-    var downUrl = info.baseUrl + '/' + files?.fileData?.[0]?.newFilename; //这里是想传回图片的链接
-    fs.rename(oldPath, newPath, () => {
-      //fs.rename重命名图片名称
-      res.send({
-        msg: 'get请求成功',
-        code: 1,
-        success: true,
-        data: downUrl,
+    //let oldPath = files?.fileData?.[0]?.filepath; //这里的路径是图片的本地路径
+    //console.log(files?.fileData?.[0]?.newFilename); //图片传过来的名字
+    // let newPath = path.join(
+    //   path.dirname(oldPath),
+    //   files?.fileData?.[0]?.newFilename
+    // );
+    // //这里我传回一个下载此图片的Url
+    // var downUrl = info.baseUrl + '/' + files?.fileData?.[0]?.newFilename; //这里是想传回图片的链接
+    // fs.rename(oldPath, newPath, () => {
+    //   //fs.rename重命名图片名称
+    //   res.send({
+    //     msg: 'get请求成功',
+    //     code: 1,
+    //     success: true,
+    //     data: downUrl,
+    //   });
+    // });
+    uploadFile(files?.fileData?.[0])
+      .then((data) => {
+        console.log('File uploaded:', data);
+      })
+      .catch((error) => {
+        console.error('Error uploading file:', error);
       });
-    });
+
+    // res.send({
+    //   msg: 'get请求成功',
+    //   code: 1,
+    //   success: true,
+    //   data: downUrl,
+    // });
   });
 });
 
