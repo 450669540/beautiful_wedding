@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-11 10:00:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-11 11:23:25
+ * @LastEditTime: 2024-04-11 11:43:51
  * @FilePath: /beautiful-wedding/utils/uploadOssUtil.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,6 +20,7 @@ async function uploadFile(file) {
     accessKeyId: globalInfo?.ossAccessKeyId,
     accessKeySecret: globalInfo?.ossAccessKeySecret,
     bucket: globalInfo?.ossBucket,
+    endpoint: globalInfo?.ossEndpoint,
   });
 
   try {
