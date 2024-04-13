@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-11 11:28:39
+ * @LastEditTime: 2024-04-13 20:37:19
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -10,7 +10,7 @@ const express = require('express');
 var formidable = require('formidable');
 var path = require('path');
 var fs = require('fs');
-
+const lodash = require('lodash');
 const axios = require('axios');
 const uuid = require('uuid');
 const info = require('./../config/info');
@@ -46,6 +46,16 @@ router.post('/login', async (req, res) => {
       });
     let userinfo = await searchUserOpenId(openid);
     if (userinfo) {
+      if (!userinfo?.user_no) {
+        console.log('没有user_no');
+        const userNo =
+          new Date().getTime().toString(36).substr(2, 4) +
+          Math.random().toString(36).substr(2, 4);
+        userinfo = await userOperate.update(
+          { open_id: userinfo?.open_id },
+          { user_no: userNo }
+        );
+      }
       req.session.user = userinfo; // 将用户信息存储到session中
       req.session.islogin = true; // 将用户的登录状态存储到session中
       res.send({
@@ -56,6 +66,10 @@ router.post('/login', async (req, res) => {
       });
     } else {
       console.log('创建新用户');
+      const userNo =
+        new Date().getTime().toString(36).substr(2, 4) +
+        Math.random().toString(36).substr(2, 4);
+
       // 创建用户
       let creatUserinfoStatus = await userOperate?.create({
         _id: uuid.v4(),
@@ -66,6 +80,7 @@ router.post('/login', async (req, res) => {
         phone: '',
         create_on: new Date(),
         update_on: new Date(),
+        user_no: lodash.toUpper(userNo),
       });
       // session 中间件
       req.session.user = creatUserinfoStatus?.[0]; // 将用户信息存储到session中
