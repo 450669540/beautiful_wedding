@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-18 13:54:15
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-03-29 22:33:11
+ * @LastEditTime: 2024-04-14 11:48:26
  * @FilePath: /beautifu-wedding/app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,7 @@ const useRouter = require('./router/index.js');
 const useUserRouter = require('./router/user.js');
 const useElectronicInvitationRouter = require('./router/electronicInvitation.js');
 const useCommentRouter = require('./router/comment.js');
+const useGiftBookRouter = require('./router/giftStatistics.js');
 
 require('./config/db.js');
 require('./dbmodel/advertisement/AdvertisementSchema.js');
@@ -61,6 +62,7 @@ app.use(useRouter);
 app.use(useUserRouter);
 app.use(useElectronicInvitationRouter);
 app.use(useCommentRouter);
+app.use(useGiftBookRouter);
 // session 中间件
 
 app.listen(port, () => console.log(`服务器启动成功，端口号为： ${port}!`));
