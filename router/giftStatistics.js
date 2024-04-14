@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-14 21:03:43
+ * @LastEditTime: 2024-04-14 21:07:38
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -125,11 +125,13 @@ router.post('/updateGiftBookAuthorized', async (req, res) => {
 /** 获取礼金记录 */
 router.get('/bookRecordList', async (req, res) => {
   const query = req.query;
+  console.log('keyword', query?.keyword);
   const data = await bookRecordOperate.find(
     query?.keyword
       ? {
           book_id: query?.id,
-          name: { $regex: `/${query?.keyword}/i` }, //模糊查询
+
+          name: { $regex: query?.keyword }, //模糊查询
         }
       : {
           book_id: query?.id,
