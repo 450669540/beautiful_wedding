@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-14 21:07:38
+ * @LastEditTime: 2024-04-14 21:41:41
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,6 +33,8 @@ router.get('/getGiftBookDetail', async (req, res) => {
   const query = req.query;
 
   const data = await giftBookOperate.findOne({ _id: query?.id });
+  const data1 = await giftBookOperate.aggregate({ _id: query?.id });
+  console.log('联合查询', data1);
   res.send({
     msg: 'get请求成功',
     code: 1,
