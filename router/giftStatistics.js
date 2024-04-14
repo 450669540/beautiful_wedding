@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-14 18:05:39
+ * @LastEditTime: 2024-04-14 18:27:52
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -88,7 +88,7 @@ router.get('/deleteGiftBook', async (req, res) => {
 });
 
 router.post('/updateGiftBookTotal', async (req, res) => {
-  let { total_record, total_money } = req.body;
+  let { id, total_record, total_money } = req.body;
   let data = await giftBookOperate.update(
     { _id: id },
     {
@@ -106,7 +106,7 @@ router.post('/updateGiftBookTotal', async (req, res) => {
 });
 
 router.post('/updateGiftBookAuthorized', async (req, res) => {
-  let { authorized_ids } = req.body;
+  let { id, authorized_ids } = req.body;
   let data = await giftBookOperate.update(
     { _id: id },
     {
