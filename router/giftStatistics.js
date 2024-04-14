@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-14 18:27:52
+ * @LastEditTime: 2024-04-14 21:03:43
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -129,7 +129,7 @@ router.get('/bookRecordList', async (req, res) => {
     query?.keyword
       ? {
           book_id: query?.id,
-          keyword: { $regex: `/${query?.keyword}/i` }, //模糊查询
+          name: { $regex: `/${query?.keyword}/i` }, //模糊查询
         }
       : {
           book_id: query?.id,
