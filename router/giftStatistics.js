@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-14 14:00:10
+ * @LastEditTime: 2024-04-14 14:11:33
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -74,12 +74,60 @@ router.post('/saveGiftBook', async (req, res) => {
   });
 });
 
+router.get('/deleteGiftBook', async (req, res) => {
+  const query = req.query;
+  const data = await giftBookOperate.deleteData('deleteOne', {
+    _id: query.id,
+  });
+  res.send({
+    msg: 'get请求成功',
+    code: 1,
+    success: true,
+    data,
+  });
+});
+
+router.post('/updateGiftBookTotal', async (req, res) => {
+  let { total_record, total_money } = req.body;
+  let data = await giftBookOperate.update(
+    { _id: id },
+    {
+      total_record,
+      total_money,
+    }
+  );
+
+  res.send({
+    msg: 'get请求成功',
+    code: 1,
+    success: true,
+    data,
+  });
+});
+
+router.post('/updateGiftBookAuthorized', async (req, res) => {
+  let { authorized_ids } = req.body;
+  let data = await giftBookOperate.update(
+    { _id: id },
+    {
+      authorized_ids,
+    }
+  );
+
+  res.send({
+    msg: 'get请求成功',
+    code: 1,
+    success: true,
+    data,
+  });
+});
+
 /** 获取礼金记录 */
 router.get('/bookRecordList', async (req, res) => {
   const query = req.query;
   const data = await bookRecordOperate.find(
     {
-      user_id: req?.session?.user?._id,
+      book_id: query?.id,
       keyword: { $regex: `/${query?.keyword}/i` }, //模糊查询
     },
     query?.start,
@@ -106,7 +154,7 @@ router.get('/getBookRecordDetail', async (req, res) => {
 });
 
 router.post('/saveBookRecord', async (req, res) => {
-  let { name, gift_money, remark, id } = req.body;
+  let { name, gift_money, remark, id, bookId } = req.body;
   let data;
   if (id) {
     data = await bookRecordOperate.update(
@@ -117,6 +165,7 @@ router.post('/saveBookRecord', async (req, res) => {
         remark,
         update_on: new Date(), //修改时间
         update_id: req?.session?.user?._id,
+        book_id: bookId,
       }
     );
   } else {
@@ -132,6 +181,19 @@ router.post('/saveBookRecord', async (req, res) => {
     });
   }
 
+  res.send({
+    msg: 'get请求成功',
+    code: 1,
+    success: true,
+    data,
+  });
+});
+
+router.get('/deleteBookRecord', async (req, res) => {
+  const query = req.query;
+  const data = await bookRecordOperate.deleteData('deleteOne', {
+    _id: query.id,
+  });
   res.send({
     msg: 'get请求成功',
     code: 1,
