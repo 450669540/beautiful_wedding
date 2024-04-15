@@ -21,8 +21,12 @@ router.get('/giftBookList', async (req, res) => {
 
   console.log('当前id', req?.session?.user?._id);
   const data = await giftBookOperate.find(
-    { authorized_ids: { $regex: req?.session?.user?._id } },
-    { $or: [{ user_id: req?.session?.user?._id }] },
+    {
+      $or: [
+        { user_id: req?.session?.user?._id },
+        { authorized_ids: { $regex: req?.session?.user?._id } },
+      ],
+    },
 
     query?.start,
     query?.pageSize
