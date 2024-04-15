@@ -2,12 +2,14 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-15 16:21:52
+ * @LastEditTime: 2024-04-15 16:25:09
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 const express = require('express');
 const giftBookOperate = require('../dbmodel/giftBook/operate');
+const bookRecordOperate = require('../dbmodel/bookRecord/operate');
+
 const userOperate = require('../dbmodel/user/operate');
 
 const uuid = require('uuid');
@@ -34,11 +36,6 @@ router.get('/getGiftBookDetail', async (req, res) => {
 
   let data = await giftBookOperate.findOne({ _id: query?.id });
 
-  const data1 = await userOperate.findOne({
-    _id: { $in: data?.authorized_ids?.split(',') },
-  });
-  console.log('联合查询', data1);
-  data.members = data1;
   res.send({
     msg: 'get请求成功',
     code: 1,
