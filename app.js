@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-18 13:54:15
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-15 17:42:09
+ * @LastEditTime: 2024-04-16 09:24:33
  * @FilePath: /beautifu-wedding/app.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,7 +27,7 @@ const port = 8080;
 app.use(
   session({
     secret: 'beautifulWedding', // secret  属性的值可以为任意字符串
-    resave: false, //强制保存session即使他没有什么变化
+    resave: true, //强制保存session即使他没有什么变化
     saveUninitialized: true, //强制将来初始化的session存储
     cookie: {
       //session是基于cookie的，所以可以在配置session的时候配置cookie|

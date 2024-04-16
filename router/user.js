@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-15 17:27:55
+ * @LastEditTime: 2024-04-16 09:25:53
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -56,8 +56,11 @@ router.post('/login', async (req, res) => {
           { user_no: userNo }
         );
       }
+
       req.session.user = userinfo; // 将用户信息存储到session中
       req.session.islogin = true; // 将用户的登录状态存储到session中
+
+      console.log('login.req.session', req.session);
       res.send({
         msg: 'get请求成功',
         code: 1,

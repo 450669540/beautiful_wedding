@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-15 17:48:08
+ * @LastEditTime: 2024-04-16 09:25:05
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -18,25 +18,27 @@ const router = express.Router();
 
 router.get('/giftBookList', async (req, res) => {
   const query = req.query;
-
   console.log('当前id', req?.session?.user?._id);
-  const data = await giftBookOperate.find(
-    {
-      $or: [
-        { user_id: req?.session?.user?._id },
-        { authorized_ids: { $regex: req?.session?.user?._id } },
-      ],
-    },
 
-    query?.start,
-    query?.pageSize
-  );
-  res.send({
-    msg: 'get请求成功',
-    code: 1,
-    success: true,
-    data,
-  });
+  if (req?.session?.user?._id) {
+    const data = await giftBookOperate.find(
+      {
+        $or: [
+          { user_id: req?.session?.user?._id },
+          { authorized_ids: { $regex: req?.session?.user?._id } },
+        ],
+      },
+
+      query?.start,
+      query?.pageSize
+    );
+    res.send({
+      msg: 'get请求成功',
+      code: 1,
+      success: true,
+      data,
+    });
+  }
 });
 
 router.get('/getGiftBookDetail', async (req, res) => {
