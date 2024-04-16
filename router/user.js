@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-16 09:31:42
+ * @LastEditTime: 2024-04-16 09:37:20
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -136,8 +136,9 @@ router.get('/getUserInfoByIds', async (req, res) => {
     return;
   }
   console.log('ids', ids?.split(','));
+
   const data = await userOperate.find({
-    _id: { $in: ids?.split(',') },
+    _id: { $in: ['144850ca-e3f5-4b1b-b609-f360a06b9f38'] },
   });
 
   res.send({
