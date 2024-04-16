@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-16 09:25:53
+ * @LastEditTime: 2024-04-16 09:31:42
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -126,6 +126,15 @@ router.get('/getUserInfo', async (req, res) => {
 
 router.get('/getUserInfoByIds', async (req, res) => {
   let { ids } = req.query;
+  if (!ids) {
+    res.send({
+      msg: 'get请求成功',
+      code: 1,
+      success: true,
+      data: [],
+    });
+    return;
+  }
   console.log('ids', ids?.split(','));
   const data = await userOperate.find({
     _id: { $in: ids?.split(',') },
