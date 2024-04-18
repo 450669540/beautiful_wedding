@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-18 10:22:20
+ * @LastEditTime: 2024-04-18 10:30:53
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,8 +20,8 @@ const router = express.Router();
 router.get('/giftBookList', async (req, res) => {
   const query = req.query;
   console.log('当前id', req?.session?.user?._id);
-  const token = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
-  const tokenRes = await verifyToken(token);
+  const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
+  const tokenRes = await verifyToken(authorization);
   console.log('根据token获取用户信息', tokenRes);
   if (req?.session?.user?._id) {
     const data = await giftBookOperate.find(
