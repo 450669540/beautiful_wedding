@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-18 10:53:43
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-18 11:11:13
+ * @LastEditTime: 2024-04-18 11:18:00
  * @FilePath: /beautiful-wedding/router/weddingGame.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -34,15 +34,6 @@ router.post('/saveWeddingGame', async (req, res) => {
   console.log('根据token获取用户信息', tokenRes);
   let data;
   if (id) {
-    data = await weddingGameOperate.create({
-      _id: uuid.v4(),
-      number, //抽取数
-      game_names, //游戏列表,分隔
-      create_on: new Date(),
-      update_on: new Date(), //修改时间
-      create_id: tokenRes?.user?._id, //创建人id
-    });
-  } else {
     data = await weddingGameOperate.update(
       { _id: id },
       {
@@ -51,6 +42,15 @@ router.post('/saveWeddingGame', async (req, res) => {
         update_on: new Date(), //修改时间
       }
     );
+  } else {
+    data = await weddingGameOperate.create({
+      _id: uuid.v4(),
+      number, //抽取数
+      game_names, //游戏列表,分隔
+      create_on: new Date(),
+      update_on: new Date(), //修改时间
+      create_id: tokenRes?.user?._id, //创建人id
+    });
   }
   res.send({
     msg: 'get请求成功',
