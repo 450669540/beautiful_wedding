@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-18 10:53:43
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-18 11:06:21
+ * @LastEditTime: 2024-04-18 11:11:13
  * @FilePath: /beautiful-wedding/router/weddingGame.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,7 @@ const weddingGameOperate = require('../dbmodel/weddingGame/operate');
 const uuid = require('uuid');
 
 const router = express.Router();
+const { verifyToken } = require('../utils/tokenUtils');
 
 router.get('/getWeddingGame', async (req, res) => {
   const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
