@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-16 16:59:15
+ * @LastEditTime: 2024-04-18 09:30:38
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,7 @@ const uuid = require('uuid');
 const info = require('./../config/info');
 const userOperate = require('../dbmodel/user/operate');
 const { uploadFile } = require('../utils/uploadOssUtil');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -61,11 +62,15 @@ router.post('/login', async (req, res) => {
       req.session.islogin = true; // 将用户的登录状态存储到session中
 
       console.log('login.req.session', req.session);
+
+      const token = jwt.sign({ user: userinfo }, info?.tokenSecretKey, {
+        expiresIn: '7d',
+      }); // 设置token的过期时间等选项。
       res.send({
         msg: 'get请求成功',
         code: 1,
         success: true,
-        data: userinfo?.[0],
+        data: token,
       });
     } else {
       console.log('创建新用户');
@@ -88,11 +93,18 @@ router.post('/login', async (req, res) => {
       // session 中间件
       req.session.user = creatUserinfoStatus?.[0]; // 将用户信息存储到session中
       req.session.islogin = true; // 将用户的登录状态存储到session中
+      const token = jwt.sign(
+        { user: creatUserinfoStatus?.[0] },
+        info?.tokenSecretKey,
+        {
+          expiresIn: '7d',
+        }
+      ); // 设置token的过期时间等选项。
       res.send({
         msg: 'get请求成功',
         code: 1,
         success: true,
-        data: creatUserinfoStatus,
+        data: token,
       });
     }
   } catch (err) {
