@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-26 15:48:42
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-18 10:30:53
+ * @LastEditTime: 2024-04-18 10:39:44
  * @FilePath: /beautiful-wedding/router/comment.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -19,16 +19,15 @@ const router = express.Router();
 
 router.get('/giftBookList', async (req, res) => {
   const query = req.query;
-  console.log('当前id', req?.session?.user?._id);
   const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
   const tokenRes = await verifyToken(authorization);
   console.log('根据token获取用户信息', tokenRes);
-  if (req?.session?.user?._id) {
+  if (tokenRes?.user?._id) {
     const data = await giftBookOperate.find(
       {
         $or: [
-          { user_id: req?.session?.user?._id },
-          { authorized_ids: { $regex: req?.session?.user?._id } },
+          { user_id: tokenRes?.user?._id },
+          { authorized_ids: { $regex: tokenRes?.user?._id } },
         ],
       },
 
@@ -60,6 +59,9 @@ router.get('/getGiftBookDetail', async (req, res) => {
 router.post('/saveGiftBook', async (req, res) => {
   let { name, activity_on, remark, id } = req.body;
   let data;
+  const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
+  const tokenRes = await verifyToken(authorization);
+  console.log('根据token获取用户信息', tokenRes);
   if (id) {
     data = await giftBookOperate.update(
       { _id: id },
@@ -78,7 +80,7 @@ router.post('/saveGiftBook', async (req, res) => {
       remark,
       create_on: new Date(), //创建时间
       update_on: new Date(), //修改时间
-      user_id: req?.session?.user?._id, //创建人id
+      user_id: tokenRes?.user?._id, //创建人id
     });
   }
 
@@ -178,6 +180,9 @@ router.get('/getBookRecordDetail', async (req, res) => {
 router.post('/saveBookRecord', async (req, res) => {
   let { name, gift_money, remark, id, bookId } = req.body;
   let data;
+  const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
+  const tokenRes = await verifyToken(authorization);
+  console.log('根据token获取用户信息', tokenRes);
   if (id) {
     data = await bookRecordOperate.update(
       { _id: id },
@@ -186,7 +191,7 @@ router.post('/saveBookRecord', async (req, res) => {
         gift_money,
         remark,
         update_on: new Date(), //修改时间
-        update_id: req?.session?.user?._id,
+        update_id: tokenRes?.user?._id,
         book_id: bookId,
       }
     );
@@ -198,8 +203,8 @@ router.post('/saveBookRecord', async (req, res) => {
       remark,
       create_on: new Date(), //创建时间
       update_on: new Date(), //修改时间
-      create_id: req?.session?.user?._id, //创建人id
-      update_id: req?.session?.user?._id, //修改人id
+      create_id: tokenRes?.user?._id, //创建人id
+      update_id: tokenRes?.user?._id, //修改人id
       book_id: bookId,
     });
   }
