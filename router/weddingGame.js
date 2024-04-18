@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-18 10:53:43
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-18 10:59:26
+ * @LastEditTime: 2024-04-18 11:05:00
  * @FilePath: /beautiful-wedding/router/weddingGame.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/getWeddingGame', async (req, res) => {
   const query = req.query;
 
-  const data = await weddingGameOperate.find({ create_id: query?.user_id });
+  const data = await weddingGameOperate.findOne({ create_id: query?.user_id });
   res.send({
     msg: 'get请求成功',
     code: 1,
