@@ -12,8 +12,8 @@ const info = require('./../config/info');
 //验证Token
 function verifyToken(authorization) {
   return new Promise((resolve, reject) => {
-    console.log('token', authorization);
     const token = authorization.replace('Bearer ', ' ');
+    console.log('token', token);
 
     try {
       jwt.verify(token, info?.tokenSecretKey, (error, result) => {
