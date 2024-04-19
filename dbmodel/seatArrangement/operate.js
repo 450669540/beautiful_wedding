@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 11:09:59
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-19 10:44:54
+ * @LastEditTime: 2024-04-19 11:59:12
  * @FilePath: /beautiful-wedding/dbmodel/advertisement/operate.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,7 +12,7 @@ const seatArrangementModel = require('./SeatArrangementModel');
 const find = (query, start, pageSize) => {
   return new Promise((resolve, reject) => {
     try {
-      seatArrangement
+      seatArrangementModel
         .find(query)
         .skip(start)
         .limit(pageSize)
@@ -29,7 +29,7 @@ const find = (query, start, pageSize) => {
 // 富查询条件，对象格式，键值对
 const findOne = (query) => {
   return new Promise((resolve, reject) => {
-    seatArrangement.findOne(query).then((doc) => {
+    seatArrangementModel.findOne(query).then((doc) => {
       console.log(doc);
       resolve(doc);
     });
@@ -39,7 +39,7 @@ const findOne = (query) => {
 //联合查询
 // const aggregate = (query) => {
 //   return new Promise((resolve, reject) => {
-//     seatArrangement
+//     seatArrangementModel
 //       .aggregate([
 //         // // 分解逗号分隔的字段
 //         {
@@ -75,7 +75,7 @@ const findOne = (query) => {
 // 新增操作(save | create 方法)
 const create = (value) => {
   return new Promise((resolve, reject) => {
-    seatArrangement.create(value).then((doc) => {
+    seatArrangementModel.create(value).then((doc) => {
       console.log(doc);
       resolve(doc);
     });
@@ -85,7 +85,7 @@ const create = (value) => {
 // 更新操作(update | updateOne | updateMany 方法)
 const update = (query, value) => {
   return new Promise((resolve, reject) => {
-    seatArrangement.updateOne(query, value).then((doc) => {
+    seatArrangementModel.updateOne(query, value).then((doc) => {
       console.log(doc);
       resolve(doc);
     });
@@ -96,7 +96,7 @@ const update = (query, value) => {
 const deleteData = (deleteType, query) => {
   return new Promise((resolve, reject) => {
     deleteType = deleteType || 'deleteOne';
-    seatArrangement[deleteType](query).then((doc) => {
+    seatArrangementModel[deleteType](query).then((doc) => {
       console.log(doc);
       resolve(doc);
     });
