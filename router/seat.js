@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-19 10:48:58
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-19 14:50:39
+ * @LastEditTime: 2024-04-19 15:08:03
  * @FilePath: /beautiful-wedding/router/seat.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,7 +28,7 @@ router.get('/seatList', async (req, res) => {
       query?.pageSize
     );
     res.send({
-      msg: 'get请求成功',
+      message: 'get请求成功',
       code: 1,
       success: true,
       data,
@@ -63,7 +63,7 @@ router.post('/saveSeat', async (req, res) => {
   }
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -77,7 +77,7 @@ router.get('/deleteSeat', async (req, res) => {
   });
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -102,7 +102,7 @@ router.get('/allTableList', async (req, res) => {
     //   query?.pageSize
   );
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -114,7 +114,7 @@ router.get('/getTableDetail', async (req, res) => {
 
   const data = await tableOperate.findOne({ _id: query?.id });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -132,7 +132,7 @@ router.post('/saveTable', async (req, res) => {
   if (result.length > 0) {
     if (!(id && result?.length === 1 && result[0].table_no === table_no)) {
       res.send({
-        msg: `${table_no}号桌已存在,请修改桌号`,
+        message: `${table_no}号桌已存在,请修改桌号`,
         code: 0,
         success: false,
         data,
@@ -163,7 +163,7 @@ router.post('/saveTable', async (req, res) => {
   }
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -176,7 +176,7 @@ router.get('/deleteTable', async (req, res) => {
     _id: query.id,
   });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,

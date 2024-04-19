@@ -20,7 +20,7 @@ router.get('/getWeddingGame', async (req, res) => {
     create_id: tokenRes?.user?._id,
   });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -53,7 +53,7 @@ router.post('/saveWeddingGame', async (req, res) => {
     });
   }
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,

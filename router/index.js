@@ -20,10 +20,10 @@ router.get('/getAdvertisements', async (req, res) => {
   try {
     const data = await advertisementOperate.findOne({ code: query.code });
 
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
+    res.send({ message: 'get请求成功', code: 1, success: true, data: data });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 
@@ -38,10 +38,10 @@ router.get('/addAdvertisements', async (req, res) => {
       order: query.order,
     });
 
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
+    res.send({ message: 'get请求成功', code: 1, success: true, data: data });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 
@@ -54,10 +54,10 @@ router.get('/addSystemParams', async (req, res) => {
       comment_flag: query?.comment_flag,
     });
 
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
+    res.send({ message: 'get请求成功', code: 1, success: true, data: data });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 
@@ -71,10 +71,10 @@ router.get('/updateSystemParams', async (req, res) => {
       comment_flag: query?.comment_flag,
     });
 
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
+    res.send({ message: 'get请求成功', code: 1, success: true, data: data });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 
@@ -84,10 +84,15 @@ router.get('/getSystemParams', async (req, res) => {
   console.log(query);
   try {
     const data = await systemOperate.find();
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data?.[0] });
+    res.send({
+      message: 'get请求成功',
+      code: 1,
+      success: true,
+      data: data?.[0],
+    });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 

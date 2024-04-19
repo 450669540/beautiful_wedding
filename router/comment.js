@@ -17,7 +17,7 @@ router.get('/commentList', async (req, res) => {
 
   const data = await commentOperate.find({ template_id: query?.template_id });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -34,7 +34,7 @@ router.post('/saveComment', async (req, res) => {
     template_id,
   });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,

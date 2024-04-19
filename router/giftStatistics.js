@@ -35,7 +35,7 @@ router.get('/giftBookList', async (req, res) => {
       query?.pageSize
     );
     res.send({
-      msg: 'get请求成功',
+      message: 'get请求成功',
       code: 1,
       success: true,
       data,
@@ -49,7 +49,7 @@ router.get('/getGiftBookDetail', async (req, res) => {
   let data = await giftBookOperate.findOne({ _id: query?.id });
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -85,7 +85,7 @@ router.post('/saveGiftBook', async (req, res) => {
   }
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -98,7 +98,7 @@ router.get('/deleteGiftBook', async (req, res) => {
     _id: query.id,
   });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -116,7 +116,7 @@ router.post('/updateGiftBookTotal', async (req, res) => {
   );
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -133,7 +133,7 @@ router.post('/updateGiftBookAuthorized', async (req, res) => {
   );
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -158,7 +158,7 @@ router.get('/bookRecordList', async (req, res) => {
     query?.pageSize
   );
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -170,7 +170,7 @@ router.get('/getBookRecordDetail', async (req, res) => {
 
   const data = await bookRecordOperate.findOne({ _id: query?.id });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -210,7 +210,7 @@ router.post('/saveBookRecord', async (req, res) => {
   }
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -223,7 +223,7 @@ router.get('/deleteBookRecord', async (req, res) => {
     _id: query.id,
   });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -233,7 +233,7 @@ router.get('/deleteBookRecord', async (req, res) => {
 router.get('/deleteAllBookRecord', async (req, res) => {
   const data = await bookRecordOperate.deleteData('deleteMany');
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,

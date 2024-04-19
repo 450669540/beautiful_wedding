@@ -22,10 +22,10 @@ router.get('/getElectronicInvitationList', async (req, res) => {
   try {
     let data = await electronTemplateOperate.find();
 
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
+    res.send({ message: 'get请求成功', code: 1, success: true, data: data });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 
@@ -48,10 +48,10 @@ router.get('/getElectronicInvitationById', async (req, res) => {
         pages: JSON.parse(res2.content),
       };
     }
-    res.send({ msg: 'get请求成功', code: 1, success: true, data: data });
+    res.send({ message: 'get请求成功', code: 1, success: true, data: data });
   } catch (err) {
     console.log(err);
-    res.send({ msg: 'get请求失败', success: false });
+    res.send({ message: 'get请求失败', success: false });
   }
 });
 
@@ -76,7 +76,7 @@ router.get('/deleteElectronicInvitationById', async (req, res) => {
       _id: query.id,
     });
     res.send({
-      msg: 'get请求成功',
+      message: 'get请求成功',
       code: 1,
       success: true,
       data,

@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
         expiresIn: '7d',
       }); // 设置token的过期时间等选项。
       res.send({
-        msg: 'get请求成功',
+        message: 'get请求成功',
         code: 1,
         success: true,
         data: token,
@@ -101,7 +101,7 @@ router.post('/login', async (req, res) => {
         }
       ); // 设置token的过期时间等选项。
       res.send({
-        msg: 'get请求成功',
+        message: 'get请求成功',
         code: 1,
         success: true,
         data: token,
@@ -110,7 +110,7 @@ router.post('/login', async (req, res) => {
   } catch (err) {
     // 用户没有被创建等...
     console.log('err', err);
-    res.send({ msg: err || '请检查网络环境', success: false });
+    res.send({ message: err || '请检查网络环境', success: false });
   }
 });
 
@@ -118,7 +118,7 @@ router.post('/logout', async (req, res) => {
   req.session.user = undefined;
   req.session.islogin = false; // 将用户的登录状态存储到session中
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data: true,
@@ -129,7 +129,7 @@ router.get('/getUserInfo', async (req, res) => {
   let userinfo = await searchUserOpenId(req?.session?.user?.open_id);
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data: userinfo,
@@ -140,7 +140,7 @@ router.get('/getUserInfoByIds', async (req, res) => {
   let { ids } = req.query;
   if (!ids) {
     res.send({
-      msg: 'get请求成功',
+      message: 'get请求成功',
       code: 1,
       success: true,
       data: [],
@@ -154,7 +154,7 @@ router.get('/getUserInfoByIds', async (req, res) => {
   });
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -167,7 +167,7 @@ router.get('/getUserInfoByUserNo', async (req, res) => {
   const data = await userOperate.findOne({ user_no });
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -180,7 +180,7 @@ router.get('/getUserList', async (req, res) => {
   const data = await userOperate.find(quey);
 
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -194,7 +194,7 @@ router.post('/updateUserInfo', async (req, res) => {
     { nick_name, avatar }
   );
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -207,7 +207,7 @@ router.get('/deleteUserInfo', async (req, res) => {
     open_id: query.open_id,
   });
   res.send({
-    msg: 'get请求成功',
+    message: 'get请求成功',
     code: 1,
     success: true,
     data,
@@ -233,7 +233,7 @@ router.post('/uploadAvatar', async (req, res) => {
   //   fs.rename(oldPath, newPath, () => {
   //     //fs.rename重命名图片名称
   //     res.send({
-  //       msg: 'get请求成功',
+  //       message: 'get请求成功',
   //       code: 1,
   //       success: true,
   //       data: downUrl,
@@ -258,7 +258,7 @@ router.post('/uploadAvatar', async (req, res) => {
     // fs.rename(oldPath, newPath, () => {
     //   //fs.rename重命名图片名称
     //   res.send({
-    //     msg: 'get请求成功',
+    //     message: 'get请求成功',
     //     code: 1,
     //     success: true,
     //     data: downUrl,
@@ -268,7 +268,7 @@ router.post('/uploadAvatar', async (req, res) => {
       .then((data) => {
         console.log('File uploaded:', data);
         res.send({
-          msg: 'get请求成功',
+          message: 'get请求成功',
           code: 1,
           success: true,
           data: data?.url,
