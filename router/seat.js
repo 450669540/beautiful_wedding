@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-19 10:48:58
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-19 11:21:11
+ * @LastEditTime: 2024-04-19 11:29:21
  * @FilePath: /beautiful-wedding/router/seat.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -122,7 +122,7 @@ router.get('/getTableDetail', async (req, res) => {
 });
 
 router.post('/saveTable', async (req, res) => {
-  let { name, gift_money, remark, id, bookId } = req.body;
+  let { guest_names, tableNo, id, seatId } = req.body;
   let data;
   const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
   const tokenRes = await verifyToken(authorization);
@@ -145,9 +145,8 @@ router.post('/saveTable', async (req, res) => {
       guest_names,
       create_on: new Date(), //创建时间
       update_on: new Date(), //修改时间
-      create_id: tokenRes?.user?._id, //创建人id
       user_id: tokenRes?.user?._id, //修改人id
-      seat_id: bookId,
+      seat_id: seatId,
     });
   }
 
