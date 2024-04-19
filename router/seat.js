@@ -141,7 +141,7 @@ router.post('/saveTable', async (req, res) => {
   } else {
     data = await tableOperate.create({
       _id: uuid.v4(),
-      tableNo,
+      table_no,
       guest_names,
       create_on: new Date(), //创建时间
       update_on: new Date(), //修改时间
