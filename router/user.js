@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-21 11:34:46
+ * @LastEditTime: 2024-04-21 11:36:54
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -223,50 +223,45 @@ router.post('/updateWeddingDate', async (req, res) => {
 /** 获取婚礼进度 */
 router.get('/getWeddingProcess', async (req, res) => {
   let count = 0;
-  const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
-  const tokenRes = await verifyToken(authorization);
-  console.log('根据token获取用户信息', tokenRes);
-  if (tokenRes?.user?._id) {
-    const gameData = await weddingGameOperate.findOne({
-      create_id: tokenRes?.user?._id,
-    });
+  const gameData = await weddingGameOperate.findOne({
+    create_id: req?.session?.user?._id,
+  });
 
-    const giftBookData = await giftBookOperate.find(
-      {
-        user_id: tokenRes?.user?._id,
-      },
-      0,
-      10
-    );
+  const giftBookData = await giftBookOperate.find(
+    {
+      user_id: req?.session?.user?._id,
+    },
+    0,
+    10
+  );
 
-    const seatData = await seatArrangementOperate.find(
-      { user_id: tokenRes?.user?._id },
-      0,
-      10
-    );
+  const seatData = await seatArrangementOperate.find(
+    { user_id: req?.session?.user?._id },
+    0,
+    10
+  );
 
-    console.log('user_id', tokenRes?.user?._id);
+  console.log('user_id', req?.session?.user?._id);
 
-    console.log('gameData', gameData);
+  console.log('gameData', gameData);
 
-    console.log('giftBookData', giftBookData);
-    console.log('seatData', seatData);
-    if (gameData) {
-      count += 1;
-    }
-    if (giftBookData?.length > 0) {
-      count += 1;
-    }
-    if (seatData?.length > 0) {
-      count += 1;
-    }
-    res.send({
-      message: 'get请求成功',
-      code: 1,
-      success: true,
-      data: count,
-    });
+  console.log('giftBookData', giftBookData);
+  console.log('seatData', seatData);
+  if (gameData) {
+    count += 1;
   }
+  if (giftBookData?.length > 0) {
+    count += 1;
+  }
+  if (seatData?.length > 0) {
+    count += 1;
+  }
+  res.send({
+    message: 'get请求成功',
+    code: 1,
+    success: true,
+    data: count,
+  });
 });
 
 router.get('/deleteUserInfo', async (req, res) => {
