@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-21 10:53:05
+ * @LastEditTime: 2024-04-21 11:28:34
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,6 +15,10 @@ const axios = require('axios');
 const uuid = require('uuid');
 const info = require('./../config/info');
 const userOperate = require('../dbmodel/user/operate');
+const giftBookOperate = require('../dbmodel/giftBook/operate');
+const weddingGameOperate = require('../dbmodel/weddingGame/operate');
+const seatArrangementOperate = require('../dbmodel/seatArrangement/operate');
+
 const { uploadFile } = require('../utils/uploadOssUtil');
 const jwt = require('jsonwebtoken');
 
@@ -213,6 +217,43 @@ router.post('/updateWeddingDate', async (req, res) => {
     code: 1,
     success: true,
     data,
+  });
+});
+
+/** 获取婚礼进度 */
+router.post('/getWeddingProcess', async (req, res) => {
+  let count = 0;
+  const gameData = await weddingGameOperate.findOne({
+    create_id: req?.session?.user?.open_id,
+  });
+
+  const giftBookData = await giftBookOperate.find(
+    {
+      user_id: req?.session?.user?.open_id,
+    },
+    0,
+    10
+  );
+
+  const seatData = await seatArrangementOperate.find(
+    { user_id: req?.session?.user?.open_id },
+    0,
+    10
+  );
+  if (gameData) {
+    count += 1;
+  }
+  if (giftBookData?.length > 0) {
+    count += 1;
+  }
+  if (seatData?.length > 0) {
+    count += 1;
+  }
+  res.send({
+    message: 'get请求成功',
+    code: 1,
+    success: true,
+    data: count,
   });
 });
 
