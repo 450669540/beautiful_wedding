@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-02-19 13:51:24
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-21 10:42:28
+ * @LastEditTime: 2024-04-21 10:53:05
  * @FilePath: /beautiful-wedding/router/user.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -206,7 +206,7 @@ router.post('/updateWeddingDate', async (req, res) => {
   let { date } = req.body;
   const data = await userOperate.update(
     { open_id: req?.session?.user?.open_id },
-    { wedding_date, date }
+    { wedding_date: date }
   );
   res.send({
     message: 'get请求成功',
