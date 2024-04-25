@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-04-19 10:48:58
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-25 14:38:47
+ * @LastEditTime: 2024-04-25 15:18:54
  * @FilePath: /beautiful-wedding/router/seat.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -42,6 +42,20 @@ router.post('/saveSeat', async (req, res) => {
   const authorization = req.headers.authorization; // 假设这是从HTTP请求头部中获取的token
   const tokenRes = await verifyToken(authorization);
   console.log('根据token获取用户信息', tokenRes);
+  const seatRes = await seatArrangementOperate.find({
+    user_id: tokenRes?.user?._id,
+    template_id,
+  });
+  if (seatRes?.length > 0) {
+    res.send({
+      message: 'get请求成功',
+      code: 1,
+      success: true,
+      data: seatRes?.[0],
+      needTip: true,
+    });
+    return;
+  }
   if (id) {
     data = await seatArrangementOperate.update(
       { _id: id },
