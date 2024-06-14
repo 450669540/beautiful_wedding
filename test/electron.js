@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-06-14 15:03:07
+ * @LastEditTime: 2024-06-14 15:07:58
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -841,5 +841,5 @@ const create2 = async () => {
     user_id: '22542213-5b94-46b7-b7dd-057f3032a414',
   });
 };
-create();
+// create();
 create2();
