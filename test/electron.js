@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-04-02 15:45:59
+ * @LastEditTime: 2024-06-14 15:03:07
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -396,6 +396,19 @@ const create2 = async () => {
           },
         ],
       },
+      {
+        page_id: '4',
+        list: [
+          {
+            type: 'address',
+            styles: {
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            },
+          },
+        ],
+      },
     ]),
   });
 
@@ -742,6 +755,52 @@ const create2 = async () => {
           },
         ],
       },
+      {
+        id: '4',
+        background: '#F5F3F2',
+        list: [
+          {
+            type: 'multi',
+            value: '',
+            styles: {
+              width: '100%',
+              height: '200rpx',
+              display: 'flex',
+              flexDirection: 'column',
+              backgroundColor: '#F6F1F0',
+              color: '#6A4C4C',
+              marginLeft: '40rpx',
+            },
+            children: [
+              {
+                type: 'text',
+                value: `我们的故事藏在画里面`,
+
+                animationClass: 'element10',
+                styles: {
+                  fontSize: '40rpx',
+                  marginTop: '20rpx',
+                  letterSpacing: '20rpx',
+                  fontStyle: 'italic',
+                },
+              },
+              {
+                type: 'text',
+                value: `定格了永远`,
+
+                animationClass: 'element4',
+                styles: {
+                  fontSize: '40rpx',
+                  marginTop: '20rpx',
+                  letterSpacing: '20rpx',
+                  fontStyle: 'italic',
+                  marginLeft: '80rpx',
+                },
+              },
+            ],
+          },
+        ],
+      },
     ]),
   });
 
@@ -766,9 +825,20 @@ const create2 = async () => {
 
     start_on: '2024-08-12 00:00:00', // 请柬时间
 
-    address: '安徽省蚌埠市龙子湖区慧', //请柬地址
+    address: '安徽省蚌埠市蚌山区银泰百货东北门南210米', //请柬地址
 
     title: '王五&李四', //请柬标题
+
+    lat: 32.915983,
+
+    lng: 117.369271,
+
+    hotel_name: '罗曼里·宴会酒店',
+
+    audio_path:
+      'http://qnvideo.hunliji.com/n-LvZJP0teoKD9I40PDyXmbhuJQ=/Fmj62r8QqAzkeaVon5tkkOgTwDn9.mp3',
+
+    user_id: '22542213-5b94-46b7-b7dd-057f3032a414',
   });
 };
 create();
