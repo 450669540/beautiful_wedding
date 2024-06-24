@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-06-24 13:54:38
+ * @LastEditTime: 2024-06-24 14:04:40
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -1869,7 +1869,7 @@ const create3 = async () => {
 
     name: '爱在此时', //模版名称
 
-    cover: 'https://www.beautifulwedding.cn/example7_4.jpg', //封面
+    cover: 'https://www.beautifulwedding.cn/my-wedding-cover.jpg', //封面
 
     type: 'longImage', //模版类型
 
