@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-06-28 17:40:42
+ * @LastEditTime: 2024-06-28 17:52:27
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -883,13 +883,13 @@ const create3 = async () => {
             firstLineStyles: {
               color: '#AA866A',
               fontSize: '44rpx',
-              fontFamily: 'FZZJ-PANYBJW',
+              fontFamily: 'FZSong III-Z05S',
             },
             secondLineText: ' WELCOME TO OUR WEDDING',
             secondLineStyles: {
               color: '#AA866A',
               fontSize: '30rpx',
-              fontFamily: 'FZZJ-PANYBJW',
+              fontFamily: 'FZSong III-Z05S',
             },
             styles: {
               marginTop: '40px',
@@ -1021,7 +1021,7 @@ const create3 = async () => {
                 type: 'text',
                 value: '刘科龙',
                 styles: {
-                  fontFamily: 'FZZJ-PANYBJW',
+                  fontFamily: 'FZSong III-Z05S',
                 },
               },
               {
@@ -1029,14 +1029,14 @@ const create3 = async () => {
                 value: '&',
                 styles: {
                   margin: '0 40rpx',
-                  fontFamily: 'FZZJ-PANYBJW',
+                  fontFamily: 'FZSong III-Z05S',
                 },
               },
               {
                 type: 'text',
                 value: '朱莹洁',
                 styles: {
-                  fontFamily: 'FZZJ-PANYBJW',
+                  fontFamily: 'FZSong III-Z05S',
                 },
               },
             ],
@@ -1045,7 +1045,7 @@ const create3 = async () => {
             type: 'text',
             value: '2024年7月14日 12:08',
             styles: {
-              fontFamily: 'FZZJ-PANYBJW',
+              fontFamily: 'FZSong III-Z05S',
               textAlign: 'center',
               marginTop: '30px',
             },
@@ -1054,7 +1054,7 @@ const create3 = async () => {
             type: 'text',
             value: '浙江省宁波市北仑区昆亭燕湾村活动中心',
             styles: {
-              fontFamily: 'FZZJ-PANYBJW',
+              fontFamily: 'FZSong III-Z05S',
               textAlign: 'center',
               marginTop: '20px',
             },
@@ -1659,7 +1659,7 @@ const create3 = async () => {
                           fontSize: '36rpx',
                           marginLeft: '16rpx',
                           color: '#85664C',
-                          fontFamily: 'FZZJ-PANYBJW',
+                          fontFamily: 'FZSong III-Z05S',
                         },
                       },
                       {
@@ -1726,7 +1726,7 @@ const create3 = async () => {
                       fontSize: '36rpx',
                       marginLeft: '16rpx',
                       color: '#85664C',
-                      fontFamily: 'FZZJ-PANYBJW',
+                      fontFamily: 'FZSong III-Z05S',
                     },
                   },
                   {
