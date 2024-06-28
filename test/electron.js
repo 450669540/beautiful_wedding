@@ -2,7 +2,7 @@
  * @Author: zhuyingjie zhuyingjie@xueji.com
  * @Date: 2024-03-25 16:42:25
  * @LastEditors: zhuyingjie zhuyingjie@xueji.com
- * @LastEditTime: 2024-06-24 15:55:22
+ * @LastEditTime: 2024-06-28 15:15:38
  * @FilePath: /beautiful-wedding/test/electron.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -1890,7 +1890,7 @@ const create3 = async () => {
 
     hotel_name: '',
 
-    audio_path: 'https://www.ihaoge.net/server/1/308186559.mp3',
+    audio_path: 'https://music.y1n.cn/sys/music/64b25bbd64ac3.mp3',
 
     user_id: '22542213-5b94-46b7-b7dd-057f3032a414',
   });
